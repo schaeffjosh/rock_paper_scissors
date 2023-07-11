@@ -25,37 +25,30 @@ function getRandomIntInclusive(min, max) {
 function playRound(playerSelection, computerSelection){
     //tie conditions
     if (playerSelection === computerSelection){
-        console.log("Tie!");
         return 'tie';
     }
 
     //rock
     if (playerSelection === "ROCK" && computerSelection === "SCISSORS"){
-        console.log("You win! Rock beats Scissors!");
         return 'win';
     }
     else if (playerSelection === "ROCK" && computerSelection === "PAPER"){
-        console.log("You lose. Paper beats Rock.");
         return 'loss';
     }
 
     //paper
     if (playerSelection === "PAPER" && computerSelection === "ROCK"){
-        console.log("You win! Paper beats Rock!");
         return 'win';
     }
     else if (playerSelection === "PAPER" && computerSelection === "SCISSORS"){
-        console.log("You lose. Scissors beats paper.");
         return 'loss';
     }
 
     //scissors
     if (playerSelection === "SCISSORS" && computerSelection === "PAPER"){
-        console.log("You win! Scissors beats Paper!");
         return 'win';
     }
     else if (playerSelection === "SCISSORS" && computerSelection === "ROCK"){
-        console.log("You lose. Rock beats Scissors.");
         return 'loss';
     }
 }
