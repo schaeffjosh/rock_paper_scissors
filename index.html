@@ -4,9 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Document</title>
 </head>
 <body>
+    <main>
+    <div id="card">
+        <div id="head">
+            <div class="results">Results:</div>
+            <div class="score"></div>
+        </div>
+        <div id="choices">
+            <p>Choices:</p>
+            <div>
+                <button onclick=playRound() class="ROCK">Rock</button>
+                <button onclick=playRound() class="PAPER">Paper</button>
+                <button onclick=playRound() class="SCISSORS">Scissors</button>
+            </div>
+        </div>
+    </div>
     <script src="javascript.js"></script>
+</main>
 </body>
 </html>

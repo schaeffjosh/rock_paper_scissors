@@ -23,75 +23,84 @@ function getRandomIntInclusive(min, max) {
 }
 
 function playRound(playerSelection, computerSelection){
-    playerSelection = playerSelection.toUpperCase();
-
-    let tie = "tie"
-    let loss = "loss";
-    let win = "win";
-
     //tie conditions
     if (playerSelection === computerSelection){
         console.log("Tie!");
-        return tie;
+        return 'tie';
     }
 
     //rock
     if (playerSelection === "ROCK" && computerSelection === "SCISSORS"){
         console.log("You win! Rock beats Scissors!");
-        return win;
+        return 'win';
     }
     else if (playerSelection === "ROCK" && computerSelection === "PAPER"){
-        console.log("You lose. Paper beats rock.");
-        return loss;
+        console.log("You lose. Paper beats Rock.");
+        return 'loss';
     }
 
     //paper
     if (playerSelection === "PAPER" && computerSelection === "ROCK"){
         console.log("You win! Paper beats Rock!");
-        return win;
+        return 'win';
     }
     else if (playerSelection === "PAPER" && computerSelection === "SCISSORS"){
         console.log("You lose. Scissors beats paper.");
-        return loss;
+        return 'loss';
     }
 
     //scissors
     if (playerSelection === "SCISSORS" && computerSelection === "PAPER"){
         console.log("You win! Scissors beats Paper!");
-        return win;
+        return 'win';
     }
     else if (playerSelection === "SCISSORS" && computerSelection === "ROCK"){
         console.log("You lose. Rock beats Scissors.");
-        return loss;
+        return 'loss';
     }
 }
 
-function game(){
-    let roundCount = 0;
-    let winCount = 0;
-    let lossCount = 0;
-    for (let i = 0; i < 5; i++){
-        let choice = prompt("Choice: ");
+// result and score count variables
+let res;
+let winCount = 0;
+let lossCount = 0;
+let tieCount = 0;
+
+// format results div and allow for score manipulation
+const results = document.querySelector('.results');
+const score = document.querySelector('.score');
+score.textContent = "Wins: 0 Losses: 0 Ties: 0";
+
+// register button clicks and increment counts for each round played
+const button = document.querySelectorAll("button");
+button.forEach((button) => {
+    button.addEventListener('click', function() {
+
+        // simulate each round based off of button click and random computer choice
         let computer = getComputerChoice();
-        let round = playRound(choice, computer);
-        if (round === "tie"){
-            i--;
-        }
-        else if (round === "loss"){
-            lossCount++;
-            roundCount++;
-        }
-        else if (round === "win"){
+        res = playRound(button.classList[0], computer);
+
+        // increment based off of results
+        if (res === 'win'){
             winCount++;
-            roundCount++;
+        } else if (res === 'loss'){
+            lossCount++;
+        } else if (res === 'tie'){
+            tieCount++;
         }
-    }
-    if (winCount > lossCount){
-        console.log("You won the game!");
-    }
-    else {
-        console.log("You lost the game.");
-    }
-}
-console.log("Best of five! Go!")
-game();
+
+        // display scores
+        score.textContent = 'Wins: ' + winCount + ' Losses: ' + lossCount + ' Ties: ' + tieCount;
+
+        // display end result after 5 wins/losses
+        if (winCount >= 5){
+            score.textContent = 'You win!';
+        }
+        if (lossCount >= 5){
+            score.textContent = 'You lose.';
+        }
+    }); 
+});
+
+
+
